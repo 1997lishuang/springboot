@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zuoye.mapper.UserMapper" >
+
+    <insert id="save">
+          insert into userinfo (username,password) VALUES(#{0},#{1})
+    </insert>
+    <select id="findByUsername" parameterType="string" resultType="com.zuoye.pojo.User">
+        select * from userinfo where username = #{username}
+    </select>
+
+    <update id="updateUserByname" parameterType="com.zuoye.pojo.User" keyProperty="id" useGeneratedKeys="true">
+        UPDATE userinfo	SET username=#{username} WHERE id=#{id};
+    </update>
+</mapper>
+

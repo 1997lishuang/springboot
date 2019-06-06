@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>后台页面</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+
+<style>
+    .container{
+        /*border: 1px solid red;*/
+        height: 100%;
+    }
+    .form-signin{
+        margin-top: 20%;
+        /*border: 1px solid red;*/
+    }
+
+    .btn-block{
+        margin: auto;
+        width: 50%;
+    }
+    .input-group{
+        margin: auto;
+        width: 50%;
+    }
+    span{
+        margin-left: 500px;
+    }
+</style>
+
+<body>
+
+
+
+
+<div class="container">
+
+
+
+     <div class="center-block">
+         <form action="/updategood" method="post">
+             <table>
+                 <tr>
+                     <td>商品的名称：</td>
+                     <td>
+                         <input type="text" name="name" th:value="${findgoodone.name}">
+                         <input type="hidden" name="id" th:value="${findgoodone.id}">
+                     </td>
+                 </tr>
+                 <!--<tr>-->
+                     <!--<td>商品的类型：</td>-->
+
+                     <!--<td>-->
+                         <!--&lt;!&ndash;<select name="typeid" multiple="multiple">&ndash;&gt;-->
+                             <!--&lt;!&ndash;<option disabled="disabled">请选择一项</option>&ndash;&gt;-->
+                             <!--&lt;!&ndash;<option value="">[[${findgoodone.typeid}]]</option>&ndash;&gt;-->
+                         <!--&lt;!&ndash;</select>&ndash;&gt;-->
+
+                         <!--<input type="text" name="typeid" th:value="${findgoodone.typename}">-->
+                     <!--</td>-->
+                 <!--</tr>-->
+                 <!--<tr>-->
+                     <!--<td>商品的图片：</td>-->
+                     <!--<td>-->
+                         <!--<img src="" th:src="@{img+'/'+${findgoodone.imgpath}}"  value="" name="imgpath" th:value="${findgoodone.imgpath}" width="50%"/>-->
+                     <!--</td>-->
+                 <!--</tr>-->
+                 <tr>
+                     <td>商品的价格：</td>
+                     <td><input type="text" name="price" value="" th:value="${findgoodone.price}"></td>
+                 </tr>
+                 <tr>
+                     <td>商品的描述：</td>
+                     <td><input type="text" name="descr" value="" th:value="${findgoodone.descr}"></td>
+                 </tr>
+
+                 <tr id="col2">
+                     <td colspan="2"><input type="submit" value="修改"/>
+                 </tr>
+
+             </table>
+         </form>
+     </div>
+
+
+    </div>
+
+</div> <!-- /container -->
+
+<!--文件引用-->
+<script  th:href="@{/js/jquery-1.11.3.min.js}"></script>
+<!-- 包括所有已编译的插件 -->
+<script  th:href="@{/js/bootstrap.min.js}"></script>
+<!--文件引用-->
+</body>
+</html>

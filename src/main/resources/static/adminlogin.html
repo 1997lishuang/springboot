@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>后台页面</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+
+<style>
+    .container{
+        /*border: 1px solid red;*/
+        height: 100%;
+    }
+    .form-signin{
+        margin-top: 20%;
+        /*border: 1px solid red;*/
+    }
+
+    .btn-block{
+        margin: auto;
+        width: 50%;
+    }
+    .input-group{
+        margin: auto;
+        width: 50%;
+    }
+    span{
+        margin-left: 500px;
+    }
+</style>
+
+<body>
+
+
+
+
+<div class="container">
+
+    <form class="form-signin" action="/adminlogin" method="post">
+        <div class="input-group">
+            <span class="input-group-addon" >用户：</span>
+            <input type="text" class="form-control" name="name" placeholder="name" >
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" >密码：</span>
+            <input type="text" class="form-control" name="password" placeholder="password">
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        <!--<span  style="color: red ">${shibai}</span>-->
+    </form>
+
+</div> <!-- /container -->
+
+<!--文件引用-->
+<script src="js/jquery-1.11.3.min.js" ></script>
+<!-- 包括所有已编译的插件 -->
+<script src="js/bootstrap.min.js"></script>
+<!--文件引用-->
+
+</body>
+</html>

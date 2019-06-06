@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>后台页面</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+
+<style>
+    .container{
+        /*border: 1px solid red;*/
+        height: 100%;
+    }
+    .form-signin{
+        margin-top: 20%;
+        /*border: 1px solid red;*/
+    }
+
+    .btn-block{
+        margin: auto;
+        width: 50%;
+    }
+    .input-group{
+        margin: auto;
+        width: 50%;
+    }
+    span{
+        margin-left: 500px;
+    }
+</style>
+
+<body>
+
+
+
+
+<div class="container">
+
+<!--<h1 class="center-block" th:if="${msg}!=null" th:text="${msg}"></h1>-->
+
+    <div class="center-block">
+        <a href="" th:href="@{/show}">查看全部商品</a>
+        <div class="row" th:each="goodlist:${goodList}">
+            <div class="col-lg-2">
+                商品id:<p th:text="${goodlist.id}"></p>
+            </div>
+            <div class="col-lg-2">
+                商品的名称：<p th:text="${goodlist.name}"></p>
+            </div>
+            <div class="col-lg-2">
+                商品的类型：<p th:text="${goodlist.typeid}"></p>
+            </div>
+            <div class="col-lg-2">
+                商品的图片：<img src="" th:src="'/'+img+'/'+${goodlist.imgpath}" width="50%"/>
+            </div>
+            <div class="col-lg-2">
+                商品的价格：<p th:text="${goodlist.price}"></p>
+            </div>
+            <div class="col-lg-2">
+                商品的描述：<p th:text="${goodlist.descr}"></p>
+            </div>
+            <div class="col-lg-2">
+               <a href="" th:href="@{/updategoodget/}+${goodlist.id}"> <button class="btn btn-lg btn-primary btn-block" >修改</button></a>
+            </div>
+            <div class="col-lg-2">
+                <a href="" th:href="@{/delete/}+${goodlist.id}"> <button class="btn btn-lg btn-primary btn-block" >删除</button></a>
+            </div>
+        </div>
+        <!--<a href="" th:href="@{/insert}">增加商品</a>-->
+
+<br>
+     <div class="center-block">
+         <form action="/insertgood" method="post" enctype="multipart/form-data">
+             <table>
+                 <tr>
+                     <td>商品的名称：</td>
+                     <td>
+                         <input type="text" name="name" >
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>商品的类型：</td>
+                     <td>
+                         <select name="typeid" multiple="multiple">
+                             <!--<option disabled="disabled">请选择一项</option>-->
+                             <option value="1">1</option>
+                             <option value="1">2</option>
+                             <option value="1">3</option>
+                         </select>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>商品的图片：</td>
+                     <td>
+                         <input type="file" name="imgpath" >
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>商品的价格：</td>
+                     <td><input type="text" name="price"></td>
+                 </tr>
+                 <tr>
+                     <td>商品的描述：</td>
+                     <td><input type="text" name="descr"></td>
+                 </tr>
+
+                 <tr id="col2">
+                     <td colspan="2"><input type="submit" value="添加"/>
+                 </tr>
+                 <tr>
+                     <td ><span class="msg" th:if="${msg}!=null" th:text="${msg}"></span></td>
+                 </tr>
+             </table>
+         </form>
+     </div>
+
+    </div>
+
+</div> <!-- /container -->
+
+
+<script src="js/jquery-1.11.3.min.js" ></script>
+
+<script src="js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

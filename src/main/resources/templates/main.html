@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        color: #3C3C3C;
+
+    }
+    #lback{
+        background-image: url(img/1.png);
+
+        height: 700px;
+
+    }
+    #rback{
+        background-image: url(img/2.png);
+
+        height: 700px;
+
+    }
+    #header{
+        background-image: url(img/3.png);
+        padding-top:6%;
+    }
+    #input{
+        margin: 14px;
+    }
+</style>
+
+<body>
+<!--<h4 th:text="${user.username}"></h4>-->
+<!--<h4><a href="" th:href="@{/update(username=${user.username},id=${user.id})}"></a></h4>-->
+
+<!--<h4><a href="" th:href="@{/update(username=${user.username},id=${user.id})}"></a></h4>-->
+
+
+<div class="container-fluid">
+    <div class="row" id="header">
+        <div class="col-lg-4">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">我的商品页</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Settings</a></li>
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Help</a></li>
+                        </ul>
+                        <form class="navbar-form navbar-right">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <button type="button">搜索</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+            <!--这里用ajax实现动态搜索-->
+        </div>
+    </div>
+    <!--//、放置内容-->
+
+
+    <div class="row">
+        <div class="col-lg-2" id="lback">
+            <!--这里实现的是查询商品的类型-->
+            <h2>商品的分类</h2>
+            <div class="list-group" th:each="type:${goodtypeList}">
+                <a href="#" class="list-group-item" th:text="${type.typename}"></a>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <!--这里是实现的是数据库取图片动态的生成轮播-->
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="img/1.jpg" alt="222"width="100%">
+                    </div>
+                    <div class="item" th:each="carousel:${carouselList}">
+                        <img src=""  th:src="img+'/'+${carousel.imgpath}" width="100%" alt="">
+                        <div class="carousel-caption">
+                            <h5>333</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-2" id="rback">
+            <div class="row">
+                <div class="col-lg-offset-4">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+
+                    <span>淘宝名</span>
+                </div>
+                <div class="col-lg-8">
+                    <!--点击链接跳转到我的购物车页面-->
+                    <a href="#">我的购物车</a>
+                    <!--<a href="#" ><span class="glyphicon glyphicon-shopping-cart">我的购物车</span></a>-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <a href="adminlogin.html"> 我的后台页面</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <!--实现注册-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--//商品的动态展示-->
+    <div class="row">
+        <!--<div class="container-fluid">-->
+            <!--<div class="row">-->
+                <!--<div class="col-lg-4" th:each="carousel:${carouselList}">-->
+                    <!--<img src="" th:src="img+'/'+${carousel.imgpath}" width="50%">-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <div align="center">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4" th:each="good:${pageInfo.list}">
+                        <img src="" th:src="img+'/'+${good.imgpath}" width="50%">
+
+                        <h6>商品名称：[[${good.name}]]</h6>
+                        <h6>商品描述：[[${good.descr}]]</h6>
+                        <h6>商品价格：[[${good.price}]]</h6>
+                    </div>
+                </div>
+            </div>
+
+            <p>当前 <span th:text="${pageInfo.pageNum}"></span> 页,总 <span th:text="${pageInfo.pages}"></span> 页,共 <span th:text="${pageInfo.total}"></span> 条记录</p>
+            <a th:href="@{/good}">首页</a>
+            <a th:href="@{/good(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a>
+            <a th:href="@{/good(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a>
+            <a th:href="@{/good(pageNum=${pageInfo.pages})}">尾页</a>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+                <script src="js/jquery-3.3.1.js" th:src="@{js/jquery-3.3.1.js}" ></script>
+                <!-- Include all compiled plugins (below), or include individual files as needed -->
+                <script src="js/bootstrap.min.js"  th:src="@{js/bootstrap.min.js}"></script>
+
+
+</body>
+</html>

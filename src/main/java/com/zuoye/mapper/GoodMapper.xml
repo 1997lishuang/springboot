@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zuoye.mapper.GoodMapper" >
+
+
+   <resultMap id="find" type="com.zuoye.pojo.Good">
+       <id property="id" column="id"></id>
+       <result property="name" column="name"></result>
+       <result property="typeid" column="typeid"></result>
+       <result property="imgpath" column="imgpath"></result>
+       <result property="price" column="price"></result>
+       <result property="descr" column="descr"></result>
+   </resultMap>
+    <select id="findAll"  resultMap="find" >
+        select * from good
+    </select>
+
+    <select id="findByWord" parameterType="String" resultType="com.zuoye.pojo.Good">
+       SELECT * FROM good WHERE NAME LIKE concat('%',#{name},'%') LIMIT 3
+    </select>
+
+    <select id="findAllGood" resultType="com.zuoye.pojo.Good">
+        select * from good
+    </select>
+
+    <delete id="delete" parameterType="int">
+        delete  from good where id=#{id}
+    </delete>
+
+    <insert id="insertgood" parameterType="com.zuoye.pojo.Good">
+        insert  into good(name,typeid,imgpath,price,descr) values (#{name},#{typeid},#{imgpath},#{price},#{descr})
+    </insert>
+
+    <update id="updategood" parameterType="com.zuoye.pojo.Good" >
+         UPDATE good SET NAME=#{name},typeid=#{typeid},imgpath=#{imgpath},price=#{price},descr=#{descr} WHERE id=#{id}
+    </update>
+    <select id="findgoodone" parameterType="int" resultType="com.zuoye.pojo.Good">
+        select * from good where id=#{id}
+    </select>
+</mapper>
+
